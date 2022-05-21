@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import AppContext from './AppContext';
-// import { requestToken } from '../Services/FetchApi';
 
 function AppProvider({ children }) {
-  const [categories, setCategories,] = useState([]);
-
-  // useEffect(() => {
-  //   requestToken('esaumatias@gmail.com', 'dxkjxzçlkjcçkzxcj').then((data) => {
-  //     console.log(data);
-  //   });
-  // }, [])
+  const [user, setUser,] = useState([]);
+  const [token, setToken] = useState('');
 
   return (
     <AppContext.Provider
       value={{
-        categories,
-        setCategories,
+        user,
+        setUser,
+        token,
+        setToken
       }}
     >
       { children }

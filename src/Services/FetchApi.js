@@ -1,11 +1,11 @@
-export const requestToken = async (email, password) => {
+export const requestToken = async (user) => {
   const URL = `https://navedex-api.herokuapp.com/v1/users/signup`;
   try {
     const response = await fetch(URL, {
       method: "POST",
       body: JSON.stringify({
-          email: email,
-          password: password,
+          email: user.email,
+          password: user.password,
       }),
 
       headers: {
