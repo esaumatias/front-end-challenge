@@ -1,7 +1,8 @@
 import React, { useContext} from 'react';
 import { Form, Button, Container } from 'react-bootstrap'
 import LogoNave from '../../Data/Imagens/nave.webp'
-import { requestToken } from '../../Services/FetchApi';
+import { requestSignup, requestLogin } from '../../Services/FetchApi';
+import { Link } from "react-router-dom";
 
 import AppContext from '../../Context/AppContext';
 
@@ -24,8 +25,10 @@ function Login() {
   }
 
   function generateToken() {
-    requestToken(user).then((data) => {
-      setToken(data);
+    requestSignup(user).then(() => {
+      requestLogin(user).then((data) => {
+        setToken(data.token)
+      })
     });
   }
 
@@ -47,9 +50,11 @@ function Login() {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Button variant="dark" onClick={generateToken}>
-              Entrar
-            </Button>
+            <Link to="/Home">
+              <Button variant="dark" onClick={generateToken}>
+                Entrar
+              </Button>
+            </Link>
           </div>
         </Form>
       </section>
