@@ -19,7 +19,7 @@ function Header() {
 
   return (
     <Container>
-      <header style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
+      <header style={{display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
         <img src={LogoNave} alt="logoNave" style={{ width: '150px', marginTop: '20px'}}/>
         <button style={{ border: 'none', backgroundColor: 'transparent', textAlign: 'center' }}>Sair</button>
       </header>

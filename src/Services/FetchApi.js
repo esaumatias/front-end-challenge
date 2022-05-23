@@ -59,10 +59,15 @@ export const createNaver = async (user, token) => {
   try {
     const response = await fetch(URL, {
       method: "POST",
-      headers: { 'Authorization': 'Bearer ' + token },
+      headers: { 'Authorization': 'Bearer ' + token,
+      "Content-type": "application/json; charset=UTF-8" },
       body: JSON.stringify({
-          email: user.email,
-          password: user.password,
+        name: user.name,
+        admission_date: user.admission,
+        job_role: user.job,
+        project: user.project,
+        birthdate: user.birthdate,
+        url: user.url,
       }),
 
       // headers: {
