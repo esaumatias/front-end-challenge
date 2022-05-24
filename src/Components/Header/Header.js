@@ -2,11 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import { getList } from '../../Services/FetchApi';
 import { Container } from 'react-bootstrap'
 import LogoNave from '../../Data/Imagens/nave.webp'
+import { Redirect } from "react-router-dom";
 
 import AppContext from '../../Context/AppContext';
 
 function Header() {
-  const { token } = useContext(AppContext);
+  const { token, setIsLoading, setUser, isLoading } = useContext(AppContext);
 
   useEffect(() => {
    if (token) {
@@ -17,12 +18,19 @@ function Header() {
    }
   }, [token])
 
+  function resetToken() {
+    setIsLoading(false);
+    setUser([]);
+  }
+
   return (
     <Container>
-      <header style={{display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
-        <img src={LogoNave} alt="logoNave" style={{ width: '150px', marginTop: '20px'}}/>
-        <button style={{ border: 'none', backgroundColor: 'transparent', textAlign: 'center' }}>Sair</button>
+      {isLoading ? (
+        <header style={{display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
+          <img src={LogoNave} alt="logoNave" style={{ width: '150px', marginTop: '20px'}}/>
+          <button style={{ border: 'none', backgroundColor: 'transparent', textAlign: 'center' }} onClick={resetToken}>Sair</button>
       </header>
+      ) : <Redirect to={'/'} />}
     </Container>
   )
 }

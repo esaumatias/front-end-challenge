@@ -6,6 +6,8 @@ function AppProvider({ children }) {
   const [token, setToken] = useState('');
   const [navers, setNavers] = useState([]);
   const [indexCard, setIndexCard] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [addSubmitted, setAddSubmitted] = useState(false);
 
   return (
     <AppContext.Provider
@@ -17,7 +19,11 @@ function AppProvider({ children }) {
         navers,
         setNavers,
         indexCard,
-        setIndexCard
+        setIndexCard,
+        isLoading,
+        setIsLoading,
+        addSubmitted,
+        setAddSubmitted
       }}
     >
       { children }

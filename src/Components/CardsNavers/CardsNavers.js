@@ -20,6 +20,8 @@ function MyVerticallyCenteredModal(props) {
             <img  src={navers[indexCard].url} alt="place" />
           </div>
           <div className="right">
+          <Modal.Header closeButton>
+          </Modal.Header>
           <h2>{navers[indexCard].name}</h2>
             <p>{navers[indexCard].job_role}</p>
             <strong>Idade</strong>
@@ -48,7 +50,7 @@ function CardsNavers() {
       <Row xs={1} md={4} className="g-2" onClick={({ target }) => verificarCard(target)}>
         {navers.map((value, index) => (
           <Col>
-            <Card key={index}>
+            <Card>
               <Card.Img variant="top" name={index} src={value.url}/>
               <Card.Body>
                 <Card.Title>{value.name}</Card.Title>
