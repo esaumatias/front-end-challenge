@@ -22,10 +22,13 @@ function Home() {
     setNaverInfos((prevState) => {
       return { ...prevState, [name]: value, };
     })
+    console.log(value);
   }
 
   function submitInfos() {
-    createNaver(naverInfos, token).then(() => {})
+    createNaver(naverInfos, token).then((data) => {
+      console.log(data);
+    })
   }
 
   return (
@@ -39,38 +42,38 @@ function Home() {
           </Link>
         </div>
 
-      <Form onChange={({ target }) => handleInfos({ target })}>
-        <Row className="mb-3" xs={2}>
-          <Col style={{ marginBottom: "15px" }}>
-            <Form.Label><strong>Nome</strong></Form.Label>
-            <Form.Control placeholder="Nome" name="name"/>
-          </Col>
-          <Col style={{ marginBottom: "15px" }}>
-            <Form.Label><strong>Data de Admissão</strong></Form.Label>
-            <Form.Control placeholder="Data de Admissão" type="date" name="admission"/>
-          </Col>
-          <Col style={{ marginBottom: "15px" }}>
-            <Form.Label><strong>Cargo</strong></Form.Label>
-            <Form.Control placeholder="Cargo" name="job"/>
-          </Col>
-          <Col style={{ marginBottom: "15px" }}>
-            <Form.Label><strong>Projetos</strong></Form.Label>
-            <Form.Control placeholder="Projetos" name="project"/>
-          </Col>
-          <Col style={{ marginBottom: "15px" }}>
-            <Form.Label><strong>Data de aniversario</strong></Form.Label>
-            <Form.Control placeholder="Data de aniversario" name="birthdate" type="date"/>
-          </Col>
-          <Col style={{ marginBottom: "15px" }}>
-            <Form.Label><strong>URL da foto</strong></Form.Label>
-            <Form.Control placeholder="URL da foto" name="url"/>
-          </Col>
-        </Row>
+        <Form onChange={({ target }) => handleInfos({ target })}>
+          <Row  className="align-items-center">
+            <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
+              <Form.Label><strong>Nome</strong></Form.Label>
+              <Form.Control placeholder="Nome" name="name"/>
+            </Col>
+            <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
+              <Form.Label><strong>Data de Admissão</strong></Form.Label>
+              <Form.Control placeholder="Data de Admissão" type="text" name="admission"/>
+            </Col>
+            <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
+              <Form.Label><strong>Cargo</strong></Form.Label>
+              <Form.Control placeholder="Cargo" name="job"/>
+            </Col>
+            <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
+              <Form.Label><strong>Projetos</strong></Form.Label>
+              <Form.Control placeholder="Projetos" name="project"/>
+            </Col>
+            <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
+              <Form.Label><strong>Data de aniversario</strong></Form.Label>
+              <Form.Control placeholder="Data de aniversario" name="birthdate" type="text"/>
+            </Col>
+            <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
+              <Form.Label><strong>URL da foto</strong></Form.Label>
+              <Form.Control placeholder="URL da foto" name="url"/>
+            </Col>
+          </Row>
 
-        <Button variant="dark" onClick={submitInfos} style={{ alignSelf: "end"}}>
+        </Form>
+        <Button variant="dark" onClick={submitInfos} style={{ alignSelf: "end", marginTop: "15px"}}>
           Salvar
         </Button>
-      </Form>
      </section>
     </Container>
   )

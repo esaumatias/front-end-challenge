@@ -4,6 +4,7 @@ import AppContext from './AppContext';
 function AppProvider({ children }) {
   const [user, setUser,] = useState([]);
   const [token, setToken] = useState('');
+  const [navers, setNavers] = useState([]);
 
   return (
     <AppContext.Provider
@@ -11,7 +12,9 @@ function AppProvider({ children }) {
         user,
         setUser,
         token,
-        setToken
+        setToken,
+        navers,
+        setNavers
       }}
     >
       { children }
