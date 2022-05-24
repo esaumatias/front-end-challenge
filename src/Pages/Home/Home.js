@@ -21,11 +21,12 @@ function Home() {
   return (
     <Container>
     <Header />
-    <div className="d-grid gap-2">
+    <div style={{ display: 'flex', justifyContent: "space-between", marginTop: "40px", marginBottom: "20px"}}>
+      <h1>Navers</h1>
       <Link to="/Adicionar">
-      <Button variant="dark">
-        Entrar
-      </Button>
+        <Button variant="dark">
+          Adicionar Naver
+        </Button>
       </Link>
     </div>
     <CardsNavers />

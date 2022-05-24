@@ -1,0 +1,20 @@
+.containerModal {
+  display: flex;
+}
+
+.containerModal .left img {
+  width: 25vw;
+}
+
+.containerModal .right {
+  width: 60vw;
+  margin-left: 20px;
+}
+
+.containerModal .right h2{
+  margin-top: 20px;
+}
+
+.imgPerfilNavers img{
+  width: 300px;
+}

@@ -5,6 +5,7 @@ function AppProvider({ children }) {
   const [user, setUser,] = useState([]);
   const [token, setToken] = useState('');
   const [navers, setNavers] = useState([]);
+  const [indexCard, setIndexCard] = useState(0);
 
   return (
     <AppContext.Provider
@@ -14,7 +15,9 @@ function AppProvider({ children }) {
         token,
         setToken,
         navers,
-        setNavers
+        setNavers,
+        indexCard,
+        setIndexCard
       }}
     >
       { children }
