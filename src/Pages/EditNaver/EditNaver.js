@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { createNaver } from '../../Services/FetchApi';
+import { edit } from '../../Services/FetchApi';
 import { Container, Form, Row, Col, Button, Modal } from 'react-bootstrap'
 import Header from '../../Components/Header/Header';
 import { Link } from "react-router-dom";
@@ -18,11 +18,11 @@ function MyVerticallyCenteredModal(props) {
       {addSubmitted ? (
         <><Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Naver criado
+            Naver atualizado
           </Modal.Title>
         </Modal.Header><Modal.Body>
             <p>
-              Naver criado com sucesso!
+              Naver atualizado com sucesso!
             </p>
           </Modal.Body></>
       ) : (
@@ -41,9 +41,9 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-function AddNavers() {
+function EditNaver() {
   const [modalShow, setModalShow] = useState(false);
-  const { token, setAddSubmitted } = useContext(AppContext);
+  const { token, setAddSubmitted, navers, indexCard } = useContext(AppContext);
   const [naverInfos, setNaverInfos] = useState([{
     name: '',
     admission: '',
@@ -62,7 +62,8 @@ function AddNavers() {
   }
 
   function submitInfos() {
-    createNaver(naverInfos, token).then((data) => {
+    const idNaverSelected = navers[indexCard].id;
+    edit(naverInfos, token, idNaverSelected).then((data) => {
       if(data.statusCode === 400) {
         setAddSubmitted(false);
       } else {
@@ -79,7 +80,7 @@ function AddNavers() {
           <div style={{ alignSelf: "start"}}>
             <Link to="/Home" style={{ display: "flex", marginTop: "40px", marginBottom: "40px", textDecoration: "none", color: "black"}}>
               <img src="https://img.icons8.com/ios-glyphs/30/000000/less-than.png" alt="seta à esquerda" style={{ height: "25px"}} />
-              <h5>Adicionar Naver</h5>
+              <h5>Editar Naver</h5>
             </Link>
           </div>
 
@@ -87,27 +88,27 @@ function AddNavers() {
             <Row  className="align-items-center">
               <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
                 <Form.Label><strong>Nome</strong></Form.Label>
-                <Form.Control placeholder="Nome" name="name"/>
+                <Form.Control placeholder={navers[indexCard].name} name="name" />
               </Col>
               <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
                 <Form.Label><strong>Data de Admissão</strong></Form.Label>
-                <Form.Control placeholder="Data de Admissão" type="text" name="admission"/>
+                <Form.Control placeholder={navers[indexCard].admission_date} type="text" name="admission"/>
               </Col>
               <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
                 <Form.Label><strong>Cargo</strong></Form.Label>
-                <Form.Control placeholder="Cargo" name="job"/>
+                <Form.Control placeholder={navers[indexCard].job_role} name="job" />
               </Col>
               <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
                 <Form.Label><strong>Projetos</strong></Form.Label>
-                <Form.Control placeholder="Projetos" name="project"/>
+                <Form.Control placeholder={navers[indexCard].project} name="project"/>
               </Col>
               <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
                 <Form.Label><strong>Data de aniversario</strong></Form.Label>
-                <Form.Control placeholder="Data de aniversario" name="birthdate" type="text"/>
+                <Form.Control placeholder={navers[indexCard].birthdate} name="birthdate" type="text"/>
               </Col>
               <Col style={{ marginBottom: "15px" }} sm='6' className="my-1">
                 <Form.Label><strong>URL da foto</strong></Form.Label>
-                <Form.Control placeholder="URL da foto" name="url"/>
+                <Form.Control placeholder={navers[indexCard].url} name="url" />
               </Col>
             </Row>
 
@@ -125,4 +126,4 @@ function AddNavers() {
   );
 };
 
-export default AddNavers;
+export default EditNaver;

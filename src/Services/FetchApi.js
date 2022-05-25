@@ -96,3 +96,31 @@ export const deleteNaver = async (id, token) => {
   }
 };
 
+
+export const edit = async (user, token, id) => {
+  const URL = `https://navedex-api.herokuapp.com/v1/navers/${id}`;
+  try {
+    const response = await fetch(URL, {
+      method: "PUT",
+      headers: { 'Authorization': 'Bearer ' + token,
+      "Content-type": "application/json; charset=UTF-8" },
+      body: JSON.stringify({
+        name: user.name,
+        admission_date: user.admission,
+        job_role: user.job,
+        project: user.project,
+        birthdate: user.birthdate,
+        url: user.url,
+      }),
+
+      // headers: {
+      //     "Content-type": "application/json; charset=UTF-8"
+      // }
+    });
+    const responseJSON = await response.json();
+    return responseJSON;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
