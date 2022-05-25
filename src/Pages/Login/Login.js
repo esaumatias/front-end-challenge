@@ -11,7 +11,7 @@ import AppContext from '../../Context/AppContext';
 function Login() {
 
   const { user, setUser, setToken, isLoading, setIsLoading } = useContext(AppContext);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -43,16 +43,16 @@ function Login() {
     if (show) {
       return (
         <>
-          <Button variant="dark" onClick={handleShow}>
-            Entrar
-          </Button>
+        <Button variant="dark" onClick={handleShow}>
+          Entrar
+        </Button>
 
-          <Modal show={show} onHide={handleClose} animation={false}>
-            <Modal.Header closeButton>
-              <Modal.Title>Erro</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>E-mail ou senha inválido(s).</Modal.Body>
-          </Modal>
+        <Modal show={show} onHide={handleClose} animation={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Erro</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>E-mail ou senha inválido(s).</Modal.Body>
+        </Modal>
         </>
       );
     }

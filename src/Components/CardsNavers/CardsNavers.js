@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import AppContext from '../../Context/AppContext';
 import { Card, Row, Col, Modal } from 'react-bootstrap';
+import { deleteNaver } from '../../Services/FetchApi';
 
 import './CardsNavers.css';
 
@@ -39,22 +40,35 @@ function MyVerticallyCenteredModal(props) {
 
 function CardsNavers() {
   const [modalShow, setModalShow] = useState(false);
-  const { navers, setIndexCard } = useContext(AppContext);
+  const { navers, setIndexCard, token, setIsLoading } = useContext(AppContext);
+
   function verificarCard(target) {
     const { name } = target;
-    setModalShow(true)
-    setIndexCard(name);
+    if (name) {
+      setModalShow(true)
+      setIndexCard(name);
+    }
   }
+
+  function removeCard(index) {
+    const idNaverSelected = navers[index].id;
+    deleteNaver(idNaverSelected, token).then(() => {
+      setIsLoading(false);
+      setIsLoading(true);
+    });
+  }
+  
   return (
     <>
       <Row xs={1} md={4} className="g-2" onClick={({ target }) => verificarCard(target)}>
         {navers.map((value, index) => (
           <Col>
             <Card>
-              <Card.Img variant="top" name={index} src={value.url}/>
+              <Card.Img variant="top" name={index} src={value.url} style={{ objectFit: "cover", maxHeight: "300px", filter: "grayscale(100%)" }}/>
               <Card.Body>
                 <Card.Title>{value.name}</Card.Title>
                 <Card.Text>{value.job_role}</Card.Text>
+                <button onClick={() => removeCard(index)}><img src="https://img.icons8.com/ios-glyphs/30/000000/trash--v1.png" alt="lixo"/></button>
               </Card.Body>
             </Card>
           </Col>

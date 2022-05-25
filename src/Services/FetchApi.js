@@ -81,3 +81,18 @@ export const createNaver = async (user, token) => {
   }
 };
 
+export const deleteNaver = async (id, token) => {
+  const URL = `https://navedex-api.herokuapp.com/v1/navers/${id}`;
+  try {
+    const response = await fetch(URL, {
+      method: "DELETE",
+      headers: { 'Authorization': 'Bearer ' + token,
+      "Content-type": "application/json; charset=UTF-8" },
+    });
+    const responseJSON = await response.json();
+    return responseJSON;
+  } catch (error) {
+    console.log(error);
+  }
+};
+

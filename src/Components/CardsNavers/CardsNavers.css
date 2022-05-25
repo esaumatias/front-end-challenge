@@ -4,6 +4,7 @@
 
 .containerModal .left img {
   width: 25vw;
+  filter: grayscale(100%);
 }
 
 .containerModal .right {
